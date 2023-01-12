@@ -1,10 +1,13 @@
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import { Fragment } from "react";
-import Header from "./Layout/Header/Header";
-import Footer from "./Layout/Footer/Footer";
+import { ENV } from "../../util/settings/config";
 
-export const HomeTemplate = (props) => {
+const CheckOutTemplate = (props) => {
   const { Component, ...restProps } = props;
+
+  if (!localStorage.getItem(ENV.USER_PROFILE)) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Route
@@ -12,12 +15,12 @@ export const HomeTemplate = (props) => {
       render={(propsRoute) => {
         return (
           <Fragment>
-            <Header {...propsRoute} />
             <Component {...propsRoute} />
-            <Footer />
           </Fragment>
         );
       }}
     />
   );
 };
+
+export default CheckOutTemplate;

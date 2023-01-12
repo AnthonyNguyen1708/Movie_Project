@@ -1,13 +1,18 @@
+import { Button } from "antd";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-40 bg-black text-white w-full fixed z-10">
+    <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-80 bg-black text-white w-full z-10">
       <div className="container flex justify-between h-16 mx-auto">
-        <a aria-label="Back to homepage" className="flex items-center p-2">
+        <NavLink
+          to="/"
+          aria-label="Back to homepage"
+          className="flex items-center p-2"
+        >
           <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"></img>
-        </a>
+        </NavLink>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           <li className="flex">
             <NavLink
@@ -47,10 +52,12 @@ export default function Header() {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center px-8 py-3 rounded">Sign in</button>
-          <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
+          <NavLink className="cursor-pointer" to="/login">
+            <Button className="self-center px-8 py-3 rounded">Sign in</Button>
+          </NavLink>
+          <Button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
             Sign up
-          </button>
+          </Button>
         </div>
         <button className="p-4 lg:hidden">
           <svg

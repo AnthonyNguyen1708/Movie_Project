@@ -1,29 +1,16 @@
 import React, { useEffect } from "react";
 import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { getBannersAction } from "../../../../redux/actions/MoviesAction";
 
 export default function HomeCarousel(props) {
-  const bannerList = useSelector((state) => state.CarouselReducer.bannerList);
+  const bannerList = useSelector((state) => state.movie.bannerList);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    try {
-      const res = await axios({
-        url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachBanner",
-        method: "GET",
-        headers: {
-          TokenCybersoft:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAzNyIsIkhldEhhblN0cmluZyI6IjIzLzA1LzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY4NDgwMDAwMDAwMCIsIm5iZiI6MTY1NzIxMzIwMCwiZXhwIjoxNjg0OTQ3NjAwfQ.uVmhasF9oy0mXFYvSl8tBIUY7ZRmZ-U0hLsBB75mkn8",
-        },
-      });
-      console.log(res);
-      dispatch({
-        type: "SET_BANNER",
-        payload: res.data.content,
-      });
-    } catch (error) {}
+  useEffect(() => {
+    dispatch(getBannersAction);
   }, []);
+
   return (
     <Carousel effect="fade">
       {bannerList.map((item) => {

@@ -1,6 +1,6 @@
 import { createBrowserHistory } from "history";
 import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import News from "./pages/News/News";
@@ -8,8 +8,12 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
 import { HomeTemplate } from "./template/HomeTemplate/HomeTemplate";
+import Detail from "./pages/Detail/Detail";
+import CheckOutTemplate from "./template/CheckOutTemplate/CheckOutTemplate";
+import CheckOut from "./pages/CheckOut/CheckOut";
+import { UserTemplate } from "./template/UserTemplate/UserTemplate";
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 function App() {
   return (
@@ -18,9 +22,12 @@ function App() {
         <HomeTemplate path="/home" exact Component={Home} />
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/contact" exact Component={Contact} />
+        <HomeTemplate path="/detail/:id" exact Component={Detail} />
+        <UserTemplate path="/login" exact Component={Login} />
+        <UserTemplate path="/register" exact Component={Register} />
+        <CheckOutTemplate path="/checkout/:id" exact Component={CheckOut} />
+
         <HomeTemplate path="/" exact Component={Home} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/register" exact component={Register} />
       </Switch>
     </Router>
   );
