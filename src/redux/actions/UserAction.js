@@ -17,3 +17,15 @@ export const postUserLogin = (user) => {
     }
   };
 };
+
+export const bookingHistoryAction = async (dispatch) => {
+  try {
+    const res = await userService.postBookingHistory();
+    dispatch({
+      type: actionType.SET_BOOKING_HISTORY,
+      payload: res.data.content,
+    });
+  } catch (error) {
+    console.log("error: ", error);
+  }
+};

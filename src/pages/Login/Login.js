@@ -64,8 +64,8 @@ const Login = (props) => {
               </span>
             </p>
             <p>
-              abcdef5297 <br />
-              123456gs
+              123abc <br />
+              123abc
             </p>
           </Form.Item>
         </Form>

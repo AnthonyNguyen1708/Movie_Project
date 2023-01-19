@@ -1,6 +1,8 @@
 import actionType from "./types/ActionsType";
 
 import { movieService } from "../../service/MovieService";
+import { BookingInfo } from "../../_core/models/BookingInfo";
+import { hideLoadingAction, showLoadingAction } from "./LoadingAction";
 
 export const getBannersAction = async (dispatch) => {
   try {
@@ -77,6 +79,23 @@ export const getTheaterDetailAction = (showTimeId) => {
       });
     } catch (error) {
       console.log("error: ", error);
+    }
+  };
+};
+
+export const bookingTicketAction = (bookingInfo = new BookingInfo()) => {
+  return async (dispatch) => {
+    try {
+      dispatch(showLoadingAction);
+      await movieService.postBookingTicket(bookingInfo);
+      //reload chairStatus
+      await dispatch(getTheaterDetailAction(bookingInfo.maLichChieu));
+      await dispatch({ type: actionType.BOOKING_COMPLETE });
+      await dispatch(hideLoadingAction);
+      dispatch({ type: actionType.TAB_CHANGE_AUTO });
+    } catch (error) {
+      console.log("error: ", error);
+      dispatch(hideLoadingAction);
     }
   };
 };

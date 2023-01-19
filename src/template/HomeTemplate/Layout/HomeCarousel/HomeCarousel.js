@@ -15,16 +15,14 @@ export default function HomeCarousel(props) {
     <Carousel effect="fade">
       {bannerList.map((item) => {
         return (
-          <div key={item.maBanner}>
-            <h3>
-              <div className="w-full h-[70vh]">
-                <img
-                  className="w-full h-full bg-contain bg-center"
-                  src={item.hinhAnh}
-                  alt=""
-                />
-              </div>
-            </h3>
+          <div className="" key={item.maBanner}>
+            <div className="w-full h-[70vh]">
+              <img
+                className="w-full h-full bg-contain bg-center"
+                src={item.hinhAnh}
+                alt=""
+              />
+            </div>
           </div>
         );
       })}

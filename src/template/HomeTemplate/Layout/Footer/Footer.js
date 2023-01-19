@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Footer = (props) => {
   const cinemas = useSelector((state) => state.movie.cinemaSystem);
-  console.log("cinemas: ", cinemas);
 
   return (
     <footer className="py-6 bg-coolGray-100 text-coolGray-900 bg-gray-800">

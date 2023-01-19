@@ -1,14 +1,29 @@
-import { Rate, Tabs } from "antd";
+import { Button, Image, Modal, Rate, Tabs } from "antd";
 import moment from "moment/moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "../../assets/styles/circle.css";
 import { getMovieDetailAction } from "../../redux/actions/MoviesAction";
 
 const Detail = (props) => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    var iframe = document.querySelector("#video-trailer");
+
+    if (iframe !== null) {
+      var iframeSrc = iframe.src;
+      iframe.src = iframeSrc;
+    }
+
+    setOpenModal(false);
+  };
   const movieDetail = useSelector((state) => state.movie.movieDetail);
-  console.log("movieDetail: ", movieDetail);
 
   const dispatch = useDispatch();
 
@@ -28,7 +43,7 @@ const Detail = (props) => {
       <div className="container mx-auto grid grid-cols-12">
         <div className="col-span-4 col-start-4">
           <div className="grid grid-cols-2">
-            <img
+            <Image
               style={{
                 height: 350,
                 width: 200,
@@ -43,6 +58,14 @@ const Detail = (props) => {
               </p>
               <p>{movieDetail.tenPhim}</p>
               <p>Mô tả: {movieDetail.moTa}</p>
+              <Button
+                className="mr-3"
+                type="primary"
+                size="large"
+                onClick={() => showModal()}
+              >
+                Xem trailer
+              </Button>
             </div>
           </div>
         </div>
@@ -112,6 +135,22 @@ const Detail = (props) => {
           })}
         />
       </div>
+      <Modal
+        title="Trailer"
+        footer={[]}
+        open={openModal}
+        onCancel={closeModal}
+        width={800}
+      >
+        {/* nội dung modal */}
+        <iframe
+          id="video-trailer"
+          width="100%"
+          height="500px"
+          src={movieDetail.trailer}
+        ></iframe>
+        {/* https://www.youtube.com/watch?v=KSFS0OfIK2c */}
+      </Modal>
     </div>
   );
 };

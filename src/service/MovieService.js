@@ -1,4 +1,5 @@
 import { ENV } from "../util/settings/config";
+import { BookingInfo } from "../_core/models/BookingInfo";
 import { baseService } from "./baseService";
 
 export class MovieService extends baseService {
@@ -34,6 +35,10 @@ export class MovieService extends baseService {
     return this.get(
       `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${showTimeId}`
     );
+  };
+
+  postBookingTicket = (bookingInfo = new BookingInfo()) => {
+    return this.post(`/api/QuanLyDatVe/DatVe`, bookingInfo);
   };
 }
 

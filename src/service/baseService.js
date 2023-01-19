@@ -9,7 +9,7 @@ export class baseService {
       data: model,
       headers: {
         TokenCybersoft: ENV.REACT_APP_CYBERSOFT_TOKEN,
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
   };
@@ -21,7 +21,7 @@ export class baseService {
       data: model,
       headers: {
         TokenCybersoft: ENV.REACT_APP_CYBERSOFT_TOKEN,
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
   };
@@ -32,7 +32,7 @@ export class baseService {
       method: "GET",
       headers: {
         TokenCybersoft: ENV.REACT_APP_CYBERSOFT_TOKEN,
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
   };
@@ -48,7 +48,7 @@ export class baseService {
       },
       headers: {
         TokenCybersoft: ENV.REACT_APP_CYBERSOFT_TOKEN,
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
   };
@@ -59,7 +59,7 @@ export class baseService {
       method: "DELETE",
       headers: {
         TokenCybersoft: ENV.REACT_APP_CYBERSOFT_TOKEN,
-        Authorization: "Bearer " + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     });
   };
