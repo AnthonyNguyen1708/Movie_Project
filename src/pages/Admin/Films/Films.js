@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import {
   DeleteOutlined,
   EditOutlined,
+  ScheduleOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import { Button, Input, Space, Table } from "antd";
@@ -153,14 +154,14 @@ const Films = () => {
     },
     {
       title: "Tên Phim",
-      width: "20%",
+      width: "15%",
       dataIndex: "tenPhim",
       key: "tenPhim",
       ...getColumnSearchProps("tenPhim"),
     },
     {
       title: "Mô tả",
-      width: "30%",
+      width: "35%",
       dataIndex: "moTa",
       key: "moTa",
       render: (dataIndex) => {
@@ -169,7 +170,7 @@ const Films = () => {
     },
     {
       title: "Action",
-      width: "5%",
+      width: "10%",
       key: "action",
       dataIndex: "",
       render: (film) => (
@@ -191,6 +192,10 @@ const Films = () => {
             }}
             className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
           ></DeleteOutlined>
+
+          <NavLink to={`/admin/films/showTime/${film.maPhim}/${film.tenPhim}`}>
+            <ScheduleOutlined className="px-1" />
+          </NavLink>
         </div>
       ),
     },

@@ -35,6 +35,20 @@ export class AdminService extends baseService {
   postNewMovie = (data) => {
     return this.post(`/api/QuanLyPhim/ThemPhimUploadHinh`, data);
   };
+
+  getCinemaSystemInfo = () => {
+    return this.get(`/api/QuanLyRap/LayThongTinHeThongRap`);
+  };
+
+  getCinemaListInfo = (id) => {
+    return this.get(
+      `/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
+    );
+  };
+
+  postShowTime = (data) => {
+    return this.post(`/api/QuanLyDatVe/TaoLichChieu`, data);
+  };
 }
 
 export const adminService = new AdminService();

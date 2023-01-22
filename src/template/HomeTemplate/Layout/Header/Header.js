@@ -71,7 +71,7 @@ export default function Header() {
               src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
             ></img>
           </NavLink>
-          <ul className="items-stretch hidden space-x-3 lg:flex">
+          {/* <ul className="items-stretch hidden space-x-3 lg:flex">
             <li className="flex">
               <NavLink
                 style={{
@@ -108,7 +108,7 @@ export default function Header() {
                 Link
               </NavLink>
             </li>
-          </ul>
+          </ul> */}
           <div className="items-center flex-shrink-0 hidden lg:flex">
             {renderLogin()}
           </div>

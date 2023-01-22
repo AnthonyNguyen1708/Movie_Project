@@ -18,6 +18,7 @@ import Dashboard from "./pages/Admin/DashBoard/DashBoard";
 import Films from "./pages/Admin/Films/Films";
 import AddNewFilm from "./pages/Admin/Films/AddNewFilm";
 import Edit from "./pages/Admin/Films/Edit";
+import ShowTime from "./pages/Admin/ShowTime/ShowTime";
 
 export const history = createBrowserHistory();
 
@@ -34,7 +35,7 @@ function App() {
         <UserTemplate path="/register" exact Component={Register} />
         <HomeTemplate path="/profile" exact Component={Profile} />
 
-        <CheckOutTemplate path="/checkout/:id" exact Component={CheckOut} />
+        <CheckOutTemplate path="/checkout/:id/" exact Component={CheckOut} />
 
         <AdminTemplate path="/admin" exact Component={Dashboard} />
         <AdminTemplate path="/admin/users" exact Component={Dashboard} />
@@ -43,6 +44,11 @@ function App() {
           path="/admin/films/addNew"
           exact
           Component={AddNewFilm}
+        />
+        <AdminTemplate
+          path="/admin/films/showTime/:id/:tenphim"
+          exact
+          Component={ShowTime}
         />
         <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
 

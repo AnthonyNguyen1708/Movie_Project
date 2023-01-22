@@ -120,8 +120,10 @@ const AddNewFilm = () => {
             />
           )}
         </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit">Submit</Button>
+        <Form.Item wrapperCol={{ span: 14, offset: 4 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Form.Item>
       </Form>
     </Fragment>
