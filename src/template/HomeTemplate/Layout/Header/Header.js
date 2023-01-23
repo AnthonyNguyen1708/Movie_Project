@@ -27,15 +27,20 @@ export default function Header() {
 
     return (
       <Fragment>
-        <NavLink to="/profile">
-          <p className="text-white hover:text-blue-400 mr-2">
+        <NavLink className="no-underline" to="/profile">
+          <p
+            style={{
+              color: "white",
+            }}
+            className="text-white no-underline hover:text-blue-400 mr-2"
+          >
             Hello, {profile.taiKhoan}
           </p>
         </NavLink>
         {profile.maLoaiNguoiDung === "QuanTri" ? (
           <NavLink to="/admin">
             {" "}
-            <Button shape="circle">
+            <Button type="primary" shape="circle">
               <SettingOutlined />
             </Button>
           </NavLink>
@@ -43,6 +48,8 @@ export default function Header() {
           ""
         )}
         <Button
+          type="primary"
+          danger
           className="ml-2"
           onClick={() => {
             localStorage.removeItem("accessToken");

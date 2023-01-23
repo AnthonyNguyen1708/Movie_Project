@@ -9,6 +9,10 @@ export class UserService extends baseService {
     return this.post(`/api/QuanLyNguoiDung/DangNhap`, model);
   };
 
+  postUserRegister = (model) => {
+    return this.post(`/api/QuanLyNguoiDung/DangKy`, model);
+  };
+
   postBookingHistory = () => {
     return this.post(`/api/QuanLyNguoiDung/ThongTinTaiKhoan`);
   };

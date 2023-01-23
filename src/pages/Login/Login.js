@@ -21,13 +21,12 @@ const Login = (props) => {
       <h1>Login</h1>
       <div className="flex justify-center pt-5">
         <Form
-          layout="vertical"
           onFinish={handleLogin}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+          size="large"
         >
           <Form.Item
-            label="Username"
             name="taiKhoan"
             rules={[
               {
@@ -36,11 +35,10 @@ const Login = (props) => {
               },
             ]}
           >
-            <Input />
+            <Input placeholder="Tài khoản" />
           </Form.Item>
 
           <Form.Item
-            label="Password"
             name="matKhau"
             rules={[
               {
@@ -49,25 +47,25 @@ const Login = (props) => {
               },
             ]}
           >
-            <Input.Password />
+            <Input.Password placeholder="Mật khẩu" />
           </Form.Item>
 
           <Form.Item>
             <Button className="w-full" type="primary" htmlType="submit">
-              Submit
+              Đăng nhập
             </Button>
-
-            <p>
-              Haven't have an account yet? |{" "}
-              <span>
-                <NavLink to="/register">Register now</NavLink>
-              </span>
-            </p>
-            <p>
-              123abc <br />
-              123abc
-            </p>
           </Form.Item>
+
+          <p>
+            Bạn chưa có tài khoản? |{" "}
+            <span>
+              <NavLink to="/register">Đăng kí ngay!</NavLink>
+            </span>
+          </p>
+          <p>
+            123abc <br />
+            123abc
+          </p>
         </Form>
       </div>
     </div>

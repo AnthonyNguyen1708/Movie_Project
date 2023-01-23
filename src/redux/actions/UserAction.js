@@ -11,11 +11,24 @@ export const postUserLogin = (user) => {
         payload: res.data.content,
       });
 
-      history.goBack();
+      history.push("/");
     } catch (error) {
       console.log("error: ", error);
     }
   };
+};
+
+export const postUserRegisterAction = async (user) => {
+  try {
+    const res = await userService.postUserRegister(user);
+    if (window.confirm("Mở trang đăng nhập?")) {
+      history.push("/login");
+    }
+    console.log("res: ", res);
+  } catch (error) {
+    console.log("error: ", error.response.data.content);
+    alert(`${error.response.data.content}`);
+  }
 };
 
 export const bookingHistoryAction = async (dispatch) => {
