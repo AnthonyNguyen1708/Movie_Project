@@ -1,70 +1,29 @@
 import { Button, DatePicker, Form, Input, InputNumber, Switch } from "antd";
-
-import { useFormik } from "formik";
-import moment from "moment";
+import moment from "moment/moment";
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getMovieInfoAction,
-  postNewMovieAction,
+  postUpdateMovieAction,
 } from "../../../redux/actions/AdminAction";
+import dayjs from "dayjs";
 import { ENV } from "../../../util/settings/config";
 
 const Edit = (props) => {
-  let { id } = props.match.params;
+  const { id } = props.match.params;
+
+  const [form] = Form.useForm();
 
   const { movieInfo } = useSelector((state) => state.admin);
+
+  const [state, setState] = useState(movieInfo?.hinhAnh);
 
   const [imgSrc, setImgSrc] = useState(null);
 
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    enableReinitialize: true,
-    initialValues: {
-      tenPhim: movieInfo?.tenPhim,
-      trailer: movieInfo?.trailer,
-      moTa: movieInfo?.moTa,
-      maNhom: ENV.REACT_APP_GROUP_CODE,
-      ngayKhoiChieu: movieInfo?.ngayKhoiChieu,
-      sapChieu: movieInfo?.sapChieu,
-      dangChieu: movieInfo?.dangChieu,
-      hot: movieInfo?.hot,
-      danhGia: movieInfo?.danhGia,
-      hinhAnh: null,
-    },
-    onSubmit: (values) => {
-      let formData = new FormData();
-      for (let key in values) {
-        if (key !== "hinhAnh") {
-          formData.append(key, values[key]);
-        } else {
-          formData.append("File", values.hinhAnh, values.hinhAnh.name);
-        }
-      }
-
-      dispatch(postNewMovieAction(formData));
-    },
-  });
-
-  const handleChangeDatePicker = (value) => {
-    let ngayKhoiChieu = moment(value?.$d);
-    formik.setFieldValue("ngayKhoiChieu", ngayKhoiChieu);
-  };
-
-  const handleChangeSwitch = (name) => {
-    return (value) => {
-      formik.setFieldValue(name, value);
-    };
-  };
-
-  const handleChangeInputNumber = (name) => {
-    return (value) => {
-      formik.setFieldValue(name, value);
-    };
-  };
-
-  const handleChangeFile = (e) => {
+  const handleChange = (e) => {
+    setState(e.target.files[0]);
     let file = e.target.files[0];
     if (
       file.type === "image/png" ||
@@ -78,8 +37,34 @@ const Edit = (props) => {
         setImgSrc(e.target.result);
       };
     }
-    formik.setFieldValue("hinhAnh", file);
   };
+
+  const handleSubmit = (fieldValue) => {
+    const value = {
+      ...fieldValue,
+      ngayKhoiChieu: fieldValue["ngayKhoiChieu"].format("DD/MM/YYYY"),
+      hinhAnh: state,
+      maNhom: ENV.REACT_APP_GROUP_CODE,
+    };
+    console.log(value);
+    const formData = new FormData();
+    for (var key in value) {
+      formData.append(key, value[key]);
+      console.log(`${key}`, formData.get(key));
+    }
+    dispatch(postUpdateMovieAction(formData));
+  };
+
+  form.setFieldsValue({
+    tenPhim: movieInfo?.tenPhim,
+    trailer: movieInfo?.trailer,
+    moTa: movieInfo?.moTa,
+    ngayKhoiChieu: dayjs(movieInfo?.ngayKhoiChieu),
+    dangChieu: movieInfo?.dangChieu,
+    sapChieu: movieInfo?.sapChieu,
+    hot: movieInfo?.hot,
+    danhGia: movieInfo?.danhGia,
+  });
 
   useEffect(() => {
     dispatch(getMovieInfoAction(id));
@@ -88,77 +73,46 @@ const Edit = (props) => {
   return (
     <Fragment>
       <Form
-        onSubmitCapture={formik.handleSubmit}
+        form={form}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={handleSubmit}
       >
-        <Form.Item label="Tên Phim">
-          <Input
-            name="tenPhim"
-            value={formik.values.tenPhim}
-            onChange={formik.handleChange}
-          />
+        <Form.Item label="Tên Phim" name="tenPhim">
+          <Input />
         </Form.Item>
-        <Form.Item label="Trailer">
-          <Input
-            name="trailer"
-            value={formik.values.trailer}
-            onChange={formik.handleChange}
-          />
+        <Form.Item label="Trailer" name="trailer">
+          <Input name="trailer" />
         </Form.Item>
-        <Form.Item label="Mô tả">
-          <Input
-            name="moTa"
-            value={formik.values.moTa}
-            onChange={formik.handleChange}
-          />
+        <Form.Item label="Mô tả" name="moTa">
+          <Input name="moTa" />
         </Form.Item>
-        <Form.Item label="Ngày khởi chiếu">
-          <DatePicker
-            format={"DD/MM/YYYY"}
-            name="ngayKhoiChieu"
-            value={moment(formik.values.ngayKhoiChieu)}
-            onChange={handleChangeDatePicker}
-          />
+        <Form.Item label="Ngày khởi chiếu" name="ngayKhoiChieu">
+          <DatePicker format="DD/MM/YYYY" />
         </Form.Item>
-        <Form.Item label="Đang chiếu" valuePropName="checked">
-          <Switch
-            checked={formik.values.dangChieu}
-            onChange={handleChangeSwitch("dangChieu")}
-          />
+        <Form.Item label="Đang chiếu" name="dangChieu" valuePropName="checked">
+          <Switch />
         </Form.Item>
-        <Form.Item label="Sắp chiếu" valuePropName="checked">
-          <Switch
-            checked={formik.values.sapChieu}
-            onChange={handleChangeSwitch("sapChieu")}
-          />
+        <Form.Item label="Sắp chiếu" name="sapChieu" valuePropName="checked">
+          <Switch />
         </Form.Item>
-        <Form.Item label="Hot" valuePropName="checked">
-          <Switch
-            checked={formik.values.hot}
-            onChange={handleChangeSwitch("hot")}
-          />
+        <Form.Item label="Hot" name="hot" valuePropName="checked">
+          <Switch />
         </Form.Item>
-        <Form.Item label="Rating">
-          <InputNumber
-            value={formik.values.danhGia}
-            onChange={handleChangeInputNumber("danhGia")}
-            max={10}
-            min={0}
-          />
+        <Form.Item label="Rating" name="danhGia">
+          <InputNumber max={10} min={0} />
         </Form.Item>
-        <Form.Item label="Hình ảnh">
+        <Form.Item label="Hình ảnh" name="hinhAnh">
           <input
-            name="hinhAnh"
+            onChange={handleChange}
             type="file"
-            onChange={handleChangeFile}
             accept="image/png, image/jpg, image/jpeg, image/gif"
           />
           {!imgSrc ? (
             <img
               className="mt-5"
-              src={movieInfo.hinhAnh}
+              src={movieInfo?.hinhAnh}
               alt="..."
               style={{ width: "200px" }}
             />
@@ -171,8 +125,10 @@ const Edit = (props) => {
             />
           )}
         </Form.Item>
-        <Form.Item>
-          <Button htmlType="submit">Submit</Button>
+        <Form.Item wrapperCol={{ span: 14, offset: 4 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </Form.Item>
       </Form>
     </Fragment>

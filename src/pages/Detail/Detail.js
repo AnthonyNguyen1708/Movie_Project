@@ -35,7 +35,7 @@ const Detail = (props) => {
   return (
     <div
       style={{
-        height: "70vh",
+        height: "80vh",
         backgroundColor: "rgb(10, 32, 41)",
       }}
       className=" h-full pt-5 "
@@ -90,11 +90,11 @@ const Detail = (props) => {
         </div>
       </div>
 
-      <div className="mt-5 container mx-auto ">
+      <div className="mt-20 container mx-auto ">
         <Tabs
           style={{
             width: "50%",
-            height: "500px",
+            height: "300px",
             backgroundColor: "rgb(255, 255, 255)",
             borderRadius: "10px",
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
@@ -104,14 +104,14 @@ const Detail = (props) => {
           items={movieDetail.heThongRapChieu?.map((item, index) => {
             return {
               label: (
-                <div>
+                <div className="">
                   <img width={50} height={50} src={item.logo} alt="" />
                 </div>
               ),
               key: index,
               children: item.cumRapChieu?.map((cinema, index) => {
                 return (
-                  <div key={index}>
+                  <div className="ml-5" key={index}>
                     <p className="text-black">{cinema.tenCumRap}</p>
                     <div className="grid grid-cols-6">
                       {cinema.lichChieuPhim?.map((showTime, index) => {

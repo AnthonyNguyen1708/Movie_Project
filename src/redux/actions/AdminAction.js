@@ -41,6 +41,20 @@ export const postNewMovieAction = (data) => {
   };
 };
 
+export const postUpdateMovieAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const res = await adminService.postUpdateMovie(data);
+      console.log("res: ", res.data.content);
+      alert("Cập nhật phim thành công!");
+    } catch (error) {
+      console.log("error: ", error);
+      alert(`${error.response?.data.content}`);
+    }
+    dispatch(getFullMovieListAction);
+  };
+};
+
 export const deleteMovieAction = (movieId) => {
   return async (dispatch) => {
     try {

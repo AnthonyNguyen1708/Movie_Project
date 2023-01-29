@@ -56,11 +56,11 @@ const HomeMenu = (props) => {
                           return (
                             <Fragment key={index}>
                               <div>
-                                <div className="flex justify-evenly mb-5">
+                                <div className="flex justify-start mb-5">
                                   <img
                                     style={{
-                                      height: "220px",
-                                      width: "170px",
+                                      height: "200px",
+                                      width: "150px",
                                     }}
                                     src={movie.hinhAnh}
                                     alt={movie.tenPhim}
@@ -70,13 +70,13 @@ const HomeMenu = (props) => {
                                         "https://picsum.photos/75/75";
                                     }}
                                   />
-                                  <div className="ml-2">
+                                  <div className="ml-4">
                                     <h1 className="text-2xl text-green-700">
                                       {movie.tenPhim}
                                     </h1>
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="grid grid-cols-1 gap-2">
                                       {movie.lstLichChieuTheoPhim
-                                        ?.slice(0, 6)
+                                        ?.slice(0, 3)
                                         .map((showTime, index) => {
                                           return (
                                             <NavLink

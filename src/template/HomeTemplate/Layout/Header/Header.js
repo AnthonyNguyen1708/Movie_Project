@@ -14,12 +14,11 @@ export default function Header() {
       return (
         <Fragment>
           <NavLink to="/login">
-            <Button className="self-center px-8 py-3 rounded">Sign in</Button>
+            <p className="text-white px-2 no-underline ">Đăng nhập</p>
           </NavLink>
+          |
           <NavLink to="/register">
-            <Button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">
-              Sign up
-            </Button>
+            <p className="text-white px-2 no-underline ">Đăng kí</p>
           </NavLink>
         </Fragment>
       );
