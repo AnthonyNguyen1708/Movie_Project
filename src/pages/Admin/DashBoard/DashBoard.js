@@ -1,4 +1,4 @@
-import { Button, Input, Modal, Space, Table } from "antd";
+import { Button, Input, Modal, Popconfirm, Space, Table } from "antd";
 import React, { useEffect } from "react";
 import { useRef, useState } from "react";
 import {
@@ -13,13 +13,10 @@ import {
   getUserListAction,
 } from "../../../redux/actions/AdminAction";
 import EditUser from "./EditUser";
+import AddNewUser from "./AddNewUser";
 
 const DashBoard = () => {
-  const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const dispatch = useDispatch();
-  const { userList } = useSelector((state) => state.admin);
-
+  // Table's variants
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -135,6 +132,13 @@ const DashBoard = () => {
       ),
   });
 
+  //Component's variants
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const { userList } = useSelector((state) => state.admin);
+
   useEffect(() => {
     dispatch(getUserListAction);
   }, []);
@@ -192,16 +196,24 @@ const DashBoard = () => {
               className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-blue-700 hover:text-blue-500 focus:text-blue-500 border-0 shadow-none cursor-pointer"
               onClick={() => {
                 setUser(user);
-                setOpen(true);
+                setOpenEdit(true);
               }}
             />
 
-            <DeleteOutlined
-              onClick={() => {
+            <Popconfirm
+              title="Delete movie"
+              description={`Bạn có chắc muốn xóa ${user.hoTen}?`}
+              onConfirm={() => {
                 dispatch(deleteUserAction(user.taiKhoan));
               }}
-              className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
-            ></DeleteOutlined>
+              okText="Yes"
+              cancelText="No"
+            >
+              <DeleteOutlined
+                onClick={() => {}}
+                className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
+              ></DeleteOutlined>
+            </Popconfirm>
           </div>
         );
       },
@@ -210,21 +222,47 @@ const DashBoard = () => {
   return (
     <div>
       <h3>Quản lý danh sách phim</h3>
+      <Button
+        onClick={() => {
+          setOpenAdd(true);
+        }}
+        className="mb-4"
+        type="primary"
+      >
+        Thêm người dùng
+      </Button>
       <Table columns={columns} dataSource={userList} />
       <Modal
         title={
           <h5 className="ant-typography text-base mb-3">
-            Edit User
+            Cập nhật thông tin người dùng
             <hr />
           </h5>
         }
         centered
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
+        open={openEdit}
+        onOk={() => setOpenEdit(false)}
+        onCancel={() => setOpenEdit(false)}
         width={500}
+        footer={""}
       >
         <EditUser user={user} />
+      </Modal>
+      <Modal
+        title={
+          <h5 className="ant-typography text-base mb-3">
+            Thêm người dùng
+            <hr />
+          </h5>
+        }
+        centered
+        open={openAdd}
+        onOk={() => setOpenAdd(false)}
+        onCancel={() => setOpenAdd(false)}
+        width={500}
+        footer={""}
+      >
+        <AddNewUser user={user} />
       </Modal>
     </div>
   );

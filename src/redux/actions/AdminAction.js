@@ -1,3 +1,4 @@
+import { history } from "../../App";
 import { adminService } from "../../service/AdminService";
 import actionsType from "./types/ActionsType";
 
@@ -47,6 +48,7 @@ export const postUpdateMovieAction = (data) => {
       const res = await adminService.postUpdateMovie(data);
       console.log("res: ", res.data.content);
       alert("Cập nhật phim thành công!");
+      history.goBack();
     } catch (error) {
       console.log("error: ", error);
       alert(`${error.response?.data.content}`);
@@ -106,6 +108,19 @@ export const updateUserAction = (user) => {
       alert("Cập nhật người dùng thành công!");
     } catch (error) {
       console.log("error: ", error);
+    }
+    dispatch(getUserListAction);
+  };
+};
+
+export const addNewUserAction = (user) => {
+  return async (dispatch) => {
+    try {
+      const res = await adminService.postNewUser(user);
+      console.log("res: ", res);
+      alert("Thêm người dùng thành công!");
+    } catch (error) {
+      alert(`${error.response.data.content}`);
     }
     dispatch(getUserListAction);
   };

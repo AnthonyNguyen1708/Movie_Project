@@ -41,45 +41,29 @@ const SeatSelection = (props) => {
       let classVipChair = chair.loaiGhe === "Vip" ? "gheVip" : "";
       let classBookedChair = chair.daDat === true ? "gheDaDat" : "";
       let classBookingChair = "";
-      //check current booking chair
       let indexBookingChair = bookingChairList.findIndex(
         (bookingChair) => bookingChair.maGhe === chair.maGhe
       );
-
-      let classMyChair = "";
-      if (user.taiKhoan === chair.taiKhoanNguoiDat) {
-        classMyChair = "gheDaDuocDat";
-      }
 
       if (indexBookingChair !== -1) {
         classBookedChair = "gheDangDat";
       }
       return (
         <Fragment key={index}>
-          {
-            <button
-              onClick={() => {
-                dispatch({
-                  type: actionsType.SET_BOOKING_CHAIR,
-                  payload: chair,
-                });
-              }}
-              disabled={chair.daDat}
-              className={`ghe ${classVipChair} ${classBookedChair} ${classBookingChair} ${classMyChair}  text-center`}
-            >
-              {chair.daDat ? (
-                classMyChair !== "" ? (
-                  <UserOutlined
-                    style={{ marginBottom: 7.5, fontWeight: "bold" }}
-                  />
-                ) : (
-                  <CloseOutlined style={{ fontWeight: "bold" }} />
-                )
-              ) : (
-                chair.stt
-              )}
-            </button>
-          }
+          <button
+            onClick={() => {
+              dispatch({
+                type: actionsType.SET_BOOKING_CHAIR,
+                payload: chair,
+              });
+            }}
+            disabled={chair.daDat}
+            className="border-none bg-transparent"
+          >
+            <i
+              class={`fa fa-couch ghe ${classVipChair} ${classBookedChair} ${classBookingChair} $  text-center`}
+            ></i>
+          </button>
           {(index + 1) % 16 === 0 ? <br /> : ""}
         </Fragment>
       );
@@ -89,113 +73,138 @@ const SeatSelection = (props) => {
   return (
     <div className="container mx-auto mt-5">
       <div className="grid grid-cols-12">
-        <div className="col-span-9">
-          <div>
+        <div className="col-span-7 mt-20">
+          <div className="mt-20">
             <div className="mx-auto">
               <img
-                style={{
-                  width: "90%",
-                }}
+                className="w-full"
                 src="https://movie-booking-project.vercel.app/img/bookticket/screen.png"
                 alt=""
               />
             </div>
-            <div>{renderSeats()}</div>
+            <div className="flex justify-center">
+              <div>{renderSeats()}</div>
+            </div>
           </div>
           <div className="mt-5 flex justify-center">
             <div className="mx-4">
               Ghế trống <br />
               <div className="flex justify-center">
-                <Button className="ghe"></Button>
+                <button className="border-none bg-transparent">
+                  <i class="fa fa-couch ghe "></i>
+                </button>
               </div>
             </div>
             <div className="mx-4">
               Ghế đang chọn <br />
               <div className="flex justify-center">
-                <Button className="ghe gheDangDat"></Button>
+                <button className="border-none bg-transparent">
+                  <i class="fa fa-couch ghe gheDangDat"></i>
+                </button>
               </div>
             </div>
             <div className="mx-4">
               Ghế VIP <br />
               <div className="flex justify-center">
-                <Button className="ghe gheVip"></Button>
+                <button className="border-none bg-transparent">
+                  <i class="fa fa-couch ghe gheVip"></i>
+                </button>
               </div>
             </div>
             <div className="mx-4">
               Ghế đã đặt <br />
               <div className="flex justify-center">
-                <Button className="ghe gheDaDat"></Button>
-              </div>
-            </div>
-            <div className="mx-4">
-              Ghế bạn đã đặt <br />
-              <div className="flex justify-center">
-                <Button className="ghe gheDaDuocDat"></Button>
+                <button className="border-none bg-transparent">
+                  <i class="fa fa-couch ghe gheDaDat"></i>
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-span-3">
-          <h3 className="text-center text-2xl">
-            {bookingChairList
-              .reduce((totalPrice, chair, index) => {
-                return (totalPrice += chair.giaVe);
-              }, 0)
-              .toLocaleString()}{" "}
-            VND
-          </h3>
-          <hr />
-          <h3 className="text-green-400 text-center text-xl">
-            {thongTinPhim.tenPhim}
-          </h3>
-          <p>
-            Place: {thongTinPhim.tenCumRap} - {thongTinPhim.tenRap}
-          </p>
-          <p>
-            Date: {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}
-          </p>
-          <hr />
-          <div className="grid grid-cols-2 my-5">
+        <div className="col-start-9 col-span-4">
+          <div className="p-3 rounded-lg shadow-2xl">
+            <div>
+              <h3 className=" text-center text-2xl">{thongTinPhim.tenPhim}</h3>
+              <div className="flex justify-center">
+                <img
+                  style={{ width: "400px" }}
+                  src={thongTinPhim.hinhAnh}
+                  alt=""
+                />
+              </div>
+            </div>
+            <hr />
+            <div className="flex justify-between my-3">
+              <div className="font-bold">Tên cụm rạp: </div>
+              <div className="text-md-right">{thongTinPhim.tenCumRap}</div>
+            </div>
+            <div className="flex justify-between my-3">
+              <div className="font-bold">Địa chỉ: </div>
+              <div className="text-md-right">{thongTinPhim.diaChi}</div>
+            </div>
+            <div className="flex justify-between my-3">
+              <div className="font-bold">Thời gian: </div>
+              <div className="text-md-right">
+                {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}
+              </div>
+            </div>
+            <div className="flex justify-between my-3">
+              <div className="font-bold">Rạp: </div>
+              <div className="text-md-right">{thongTinPhim.tenRap}</div>
+            </div>
+
+            <hr />
             <div className="">
-              <span className="text-red-400">GHE</span>
-              {}
-              {_.sortBy(bookingChairList, ["stt"]).map((item, index) => {
-                return (
-                  <span key={index} className="text-green-500 text-xl mx-1">
-                    {item.stt}
-                  </span>
-                );
-              })}
+              <div className="">
+                <h3 className="text-red-400 text-center">Ghế đã chọn</h3>
+
+                <div className="grid grid-cols-6">
+                  {_.sortBy(bookingChairList, ["stt"]).map((item, index) => {
+                    return (
+                      <Fragment>
+                        <button
+                          key={index}
+                          style={{
+                            height: "30px",
+                            width: "50px",
+                            borderRadius: "10px",
+                          }}
+                          className="col-span-1 mb-3 bg-emerald-600 border-none text-white text-sm mx-1"
+                        >
+                          {item.stt}
+                        </button>
+                      </Fragment>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-            <div className="text-green-400 text-right">
-              {bookingChairList
-                .reduce((totalPrice, chair, index) => {
-                  return (totalPrice += chair.giaVe);
-                }, 0)
-                .toLocaleString()}{" "}
-              VND
+            <hr />
+            <div className="flex justify-between my-10">
+              <div className=" text-2xl">Tổng tiền: </div>
+              <div className=" text-2xl">
+                {bookingChairList
+                  .reduce((totalPrice, chair, index) => {
+                    return (totalPrice += chair.giaVe);
+                  }, 0)
+                  .toLocaleString()}{" "}
+                VND
+              </div>
             </div>
+            <Button
+              onClick={() => {
+                const bookingInfo = new BookingInfo();
+                bookingInfo.maLichChieu = props.match.params.id;
+                bookingInfo.danhSachVe = bookingChairList;
+                dispatch(bookingTicketAction(bookingInfo));
+              }}
+              type="primary"
+              danger
+              className="w-full"
+            >
+              Đặt vé
+            </Button>
           </div>
-          <hr />
-          <div className="my-5">
-            <i>Email</i> <br /> {user.email}
-          </div>
-          <div className="my-5">
-            <i>Phone</i> <br /> {user.soDT}
-          </div>
-          <hr />
-          <Button
-            onClick={() => {
-              const bookingInfo = new BookingInfo();
-              bookingInfo.maLichChieu = props.match.params.id;
-              bookingInfo.danhSachVe = bookingChairList;
-              dispatch(bookingTicketAction(bookingInfo));
-            }}
-            type="primary"
-            className="w-full"
-          >
-            Booking
-          </Button>
         </div>
       </div>
     </div>

@@ -14,21 +14,25 @@ const Profile = () => {
     dispatch(bookingHistoryAction);
   }, []);
   return (
-    <div className="container mx-auto">
+    <div
+      style={{
+        minHeight: "900px",
+      }}
+      className="container mx-auto"
+    >
       <div className="flex justify-evenly">
         <div className="w-1/3 flex justify-center">
           <div className="text-center mt-10">
             <img
               width={300}
               height={450}
-              src="https://cdn4.vectorstock.com/i/1000x1000/75/28/young-man-wearing-sleeveless-top-faceless-avata-vector-15127528.jpg"
+              src="https://picsum.photos/3000"
               alt=""
             />
-            <h5>{profile.hoTen}</h5>
-            <h4>Thông tin tai khoan</h4>
+            <h3>{profile.hoTen}</h3>
             <p>Ngày tháng năm sinh</p>
-            <p>SĐt: 090121312312</p>
-            <p>Email</p>
+            <p>SĐT: {profile.soDT}</p>
+            <p>Email: {profile.email}</p>
           </div>
         </div>
         <div className="text-center w-1/2">

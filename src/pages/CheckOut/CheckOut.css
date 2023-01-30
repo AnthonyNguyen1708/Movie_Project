@@ -1,5 +1,5 @@
-.ghe {
-  /* ghế thường */
+/* .ghe {
+  
   width: 35px;
   height: 35px;
   border: none;
@@ -24,7 +24,7 @@
 }
 
 .gheDaDuocDat {
-  /*ghế được chính mình đặt */
+  
   background-color: rgb(246, 246, 246);
   -webkit-box-shadow: -1px 2px 18px -6px orange;
   box-shadow: -1px 2px 18px -6px orange;
@@ -35,4 +35,23 @@
 .gheKhachDat {
   background-color: rgb(242, 25, 191) !important;
   cursor: no-drop;
+} */
+
+.ghe {
+  cursor: pointer;
+  margin: 1px;
+  font-size: 23px;
+}
+
+.gheDaDat {
+  color: red !important;
+  cursor: no-drop;
+}
+
+.gheVip {
+  color: orange;
+}
+
+.gheDangDat {
+  color: rgb(18, 176, 18) !important;
 }

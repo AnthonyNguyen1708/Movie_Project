@@ -1,29 +1,17 @@
-import { Button, Form, Input, InputNumber, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import Password from "antd/es/input/Password";
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
-import { updateUserAction } from "../../../redux/actions/AdminAction";
+import { addNewUserAction } from "../../../redux/actions/AdminAction";
 import { ENV } from "../../../util/settings/config";
 
-const EditUser = (props) => {
-  const dispatch = useDispatch();
+const AddNewUser = () => {
   const [form] = Form.useForm();
-  const user = props.user;
-  useEffect(() => {
-    form.setFieldsValue({
-      taiKhoan: user?.taiKhoan,
-      hoTen: user?.hoTen,
-      email: user?.email,
-      soDT: user?.soDT,
-      maLoaiNguoiDung: user?.maLoaiNguoiDung,
-      matKhau: "",
-    });
-  }, [user]);
+  const dispatch = useDispatch();
   const handleSubmit = (fieldValues) => {
-    const dataEdit = { ...fieldValues, maNhom: ENV.REACT_APP_GROUP_CODE };
-    console.log("dataEdit: ", dataEdit);
+    const dataAdd = { ...fieldValues, maNhom: ENV.REACT_APP_GROUP_CODE };
 
-    dispatch(updateUserAction(dataEdit));
+    dispatch(addNewUserAction(dataAdd));
   };
   return (
     <Fragment>
@@ -38,7 +26,7 @@ const EditUser = (props) => {
           name="taiKhoan"
           label={<span className="font-semibold">Tên người dùng</span>}
         >
-          <Input disabled />
+          <Input />
         </Form.Item>
         <Form.Item
           label={<span className="font-semibold">Họ & tên</span>}
@@ -85,7 +73,7 @@ const EditUser = (props) => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Cập nhật
+            Thêm người dùng
           </Button>
         </Form.Item>
       </Form>
@@ -93,4 +81,4 @@ const EditUser = (props) => {
   );
 };
 
-export default EditUser;
+export default AddNewUser;

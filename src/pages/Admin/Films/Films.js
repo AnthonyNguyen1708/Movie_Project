@@ -5,7 +5,7 @@ import {
   ScheduleOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Popconfirm, Space, Table } from "antd";
 import { useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { useDispatch, useSelector } from "react-redux";
@@ -182,7 +182,19 @@ const Films = () => {
             />
           </NavLink>
 
-          <DeleteOutlined
+          <Popconfirm
+            title="Delete movie"
+            description={`Bạn có chắc muốn xóa phim ${film.tenPhim}?`}
+            onConfirm={() => {
+              dispatch(deleteMovieAction(film.maPhim));
+            }}
+            okText="Yes"
+            cancelText="No"
+          >
+            <DeleteOutlined className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none" />
+          </Popconfirm>
+
+          {/* <DeleteOutlined
             onClick={() => {
               if (window.confirm("Bạn có muốn xóa phim " + `${film.tenPhim}`)) {
                 dispatch(deleteMovieAction(film.maPhim));
@@ -191,7 +203,7 @@ const Films = () => {
               }
             }}
             className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
-          ></DeleteOutlined>
+          ></DeleteOutlined> */}
 
           <NavLink to={`/admin/films/showTime/${film.maPhim}/${film.tenPhim}`}>
             <ScheduleOutlined className="px-1" />

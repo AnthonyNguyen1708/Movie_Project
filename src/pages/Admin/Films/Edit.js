@@ -45,6 +45,7 @@ const Edit = (props) => {
       ngayKhoiChieu: fieldValue["ngayKhoiChieu"].format("DD/MM/YYYY"),
       hinhAnh: state,
       maNhom: ENV.REACT_APP_GROUP_CODE,
+      maPhim: id,
     };
     console.log(value);
     const formData = new FormData();

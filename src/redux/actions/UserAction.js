@@ -21,10 +21,9 @@ export const postUserLogin = (user) => {
 export const postUserRegisterAction = async (user) => {
   try {
     const res = await userService.postUserRegister(user);
-    if (window.confirm("Mở trang đăng nhập?")) {
+    if (window.confirm("Đăng kí thành công, mở trang đăng nhập?")) {
       history.push("/login");
     }
-    console.log("res: ", res);
   } catch (error) {
     console.log("error: ", error.response.data.content);
     alert(`${error.response.data.content}`);

@@ -15,21 +15,9 @@ export class AdminService extends baseService {
   getMovieInfo = (movieId) => {
     return this.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${movieId}`);
   };
-  getUserList = () => {
-    return this.get(`/api/QuanLyNguoiDung/LayDanhSachNguoiDung`);
-  };
+
   deleteMovie = (movieId) => {
     return this.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${movieId}`);
-  };
-
-  deleteUSer = (taiKhoan) => {
-    return this.delete(
-      `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
-    );
-  };
-
-  postUpdateUser = (user) => {
-    return this.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, user);
   };
 
   postNewMovie = (data) => {
@@ -52,6 +40,26 @@ export class AdminService extends baseService {
 
   postShowTime = (data) => {
     return this.post(`/api/QuanLyDatVe/TaoLichChieu`, data);
+  };
+
+  getUserList = () => {
+    return this.get(
+      `/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${ENV.REACT_APP_GROUP_CODE}`
+    );
+  };
+
+  postNewUser = (data) => {
+    return this.post(`/api/QuanLyNguoiDung/ThemNguoiDung`, data);
+  };
+
+  deleteUSer = (taiKhoan) => {
+    return this.delete(
+      `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
+    );
+  };
+
+  postUpdateUser = (user) => {
+    return this.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, user);
   };
 }
 

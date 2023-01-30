@@ -1,14 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Popover } from "antd";
 import { postUserLogin } from "../../redux/actions/UserAction";
 import { useDispatch, useSelector } from "react-redux";
 
+const admin = (
+  <div>
+    <p>Id: anthony1412</p>
+    <p>Pass: 123456</p>
+  </div>
+);
+const client = (
+  <div>
+    <p>Id: anthony1708</p>
+    <p>Pass: 123456</p>
+  </div>
+);
 const Login = (props) => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.profile);
-  console.log("user: ", user);
-
   const handleLogin = (values) => {
     console.log("Success:", values);
     dispatch(postUserLogin(values));
@@ -16,9 +25,10 @@ const Login = (props) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div className="container mx-auto text-center">
-      <h1>Login</h1>
+      <h1 className="mt-20">Login</h1>
       <div className="flex justify-center pt-5">
         <Form
           onFinish={handleLogin}
@@ -62,10 +72,17 @@ const Login = (props) => {
               <NavLink to="/register">Đăng kí ngay!</NavLink>
             </span>
           </p>
-          <p>
-            123abc <br />
-            123abc
-          </p>
+
+          <Popover content={client} title="Client">
+            <Button className="bg-teal-500 text-white " size="medium">
+              Khách hàng
+            </Button>
+          </Popover>
+          <Popover content={admin} title="Admin">
+            <Button className="bg-cyan-500 text-white" size="medium">
+              Quản trị
+            </Button>
+          </Popover>
         </Form>
       </div>
     </div>
