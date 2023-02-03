@@ -16,6 +16,7 @@ export const HomeTemplate = (props) => {
       render={(propsRoute) => {
         return (
           <Fragment>
+            <div className="bg-black h-20 pb-2 z-0"></div>
             <Header {...propsRoute} />
             <Component {...propsRoute} />
             <Footer />

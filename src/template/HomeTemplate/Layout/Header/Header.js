@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Popover } from "antd";
 import _ from "lodash";
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
@@ -65,75 +65,39 @@ export default function Header() {
 
   return (
     <Fragment>
-      <header className="p-4 dark:bg-gray-800 dark:text-gray-100 bg-opacity-80 bg-black text-white w-95 z-10">
-        <div className=" container flex justify-between h-16 mx-auto">
-          <NavLink
-            to="/"
-            aria-label="Back to homepage"
-            className="flex items-center p-2"
-          >
-            <img
-              alt="123"
-              src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
-            ></img>
-          </NavLink>
-          {/* <ul className="items-stretch hidden space-x-3 lg:flex">
-            <li className="flex">
-              <NavLink
-                style={{
-                  textDecoration: "none",
-                }}
-                to="/home"
-                className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent border-violet-400 text-white hover:text-sky-400"
-                activeClassName="text-sky-400"
-              >
-                Link
-              </NavLink>
-            </li>
-            <li className="flex">
-              <NavLink
-                style={{
-                  textDecoration: "none",
-                }}
-                to="/contact"
-                className="flex items-center px-4 -mb-1 border-transparent border-violet-400 text-white hover:text-sky-400"
-                activeClassName="text-sky-400"
-              >
-                Link
-              </NavLink>
-            </li>
-            <li className="flex">
-              <NavLink
-                style={{
-                  textDecoration: "none",
-                }}
-                to="/news"
-                className="flex items-center px-4 -mb-1 border-transparent border-violet-400 text-white hover:text-sky-400"
-                activeClassName="text-sky-400"
-              >
-                Link
-              </NavLink>
-            </li>
-          </ul> */}
-          <div className="items-center flex-shrink-0 hidden lg:flex">
-            {renderLogin()}
-          </div>
-          <button className="p-4 lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-6 h-6 dark:text-gray-100"
+      <header
+        className="fixed w-full z-10"
+        style={{
+          top: 0,
+        }}
+      >
+        <div className="pt-2 bg-opacity-60 bg-black text-white">
+          <div className="container flex justify-between h-16 mx-auto">
+            <NavLink
+              to="/"
+              aria-label="Back to homepage"
+              className="flex items-center p-2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+              <img
+                alt="123"
+                src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
+              ></img>
+            </NavLink>
+            {/* <div className="items-center flex flex-shrink-0 ">
+              {renderLogin()}
+            </div> */}
+
+            <div className="items-center flex-shrink-0 hidden lg:flex">
+              {renderLogin()}
+            </div>
+            <div className="lg:hidden mr-5 h-full flex flex-wrap items-center">
+              <Popover placement="bottomRight" content={"abc"} trigger="click">
+                <Button shape="round">
+                  <SettingOutlined />
+                </Button>
+              </Popover>
+            </div>
+          </div>
         </div>
       </header>
     </Fragment>

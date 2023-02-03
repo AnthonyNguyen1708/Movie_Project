@@ -24,25 +24,65 @@ const AddNewUser = () => {
       >
         <Form.Item
           name="taiKhoan"
-          label={<span className="font-semibold">Tên người dùng</span>}
+          rules={[
+            {
+              required: true,
+              message: "Tài khoản không được để trống!",
+            },
+            {
+              pattern: /^[a-z0-9]{4,}$/,
+              message: "Tài khoản phải từ 4 kí tự bao gồm chữ hoặc số",
+            },
+          ]}
+          label={<span className="font-semibold">Tài khoản</span>}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label={<span className="font-semibold">Họ & tên</span>}
           name="hoTen"
+          rules={[
+            {
+              required: true,
+              message: "Họ và tên không dược để trống!",
+            },
+            {
+              pattern: /^([^0-9]*)$/,
+              message: "Họ và tên không được bao gồm số!",
+            },
+          ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label={<span className="font-semibold">Email</span>}
           name="email"
+          rules={[
+            {
+              type: "email",
+              message: "E-mail không hợp lệ!",
+            },
+            {
+              required: true,
+              message: "E-mail không được để trống!!",
+            },
+          ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label={<span className="font-semibold">Số điện thoại</span>}
           name="soDT"
+          rules={[
+            {
+              required: true,
+              message: "Số điện thoại không được để trống!!",
+            },
+            {
+              pattern: /^[0-9]+$/,
+              message: "Số điện thoại không hợp lệ!!",
+            },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -67,6 +107,18 @@ const AddNewUser = () => {
         <Form.Item
           label={<span className="font-semibold">Mật khẩu</span>}
           name="matKhau"
+          rules={[
+            {
+              required: true,
+              message: "Mật khẩu không được để trống!",
+            },
+            {
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/,
+              message:
+                "Mật khẩu phải từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt)!",
+            },
+          ]}
         >
           <Password />
         </Form.Item>

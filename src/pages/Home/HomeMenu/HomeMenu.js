@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button, Tabs } from "antd";
 import { useSelector } from "react-redux";
 import { getScheduleMovieCinemaAction } from "../../../redux/actions/MoviesAction";
-
+import "./homeMenu.css";
 import { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import moment from "moment/moment";
+import { summaryText } from "../../../util/settings/generalSetting";
 
 const HomeMenu = (props) => {
   const [listSchedule, setListSchedule] = useState([]);
@@ -17,10 +18,14 @@ const HomeMenu = (props) => {
       setListSchedule(res.data.content)
     );
   }, [cinemas]);
+
   return (
-    <div className="my-10 flex justify-center">
+    <div className="homeMenu my-10 flex justify-center">
       <Tabs
-        className="w-4/5 shadow-xl"
+        style={{
+          minWidth: "960px",
+        }}
+        className="shadow-xl"
         tabPosition={"left"}
         onChange={(key) => {
           getScheduleMovieCinemaAction(key).then((res) => {
@@ -30,7 +35,12 @@ const HomeMenu = (props) => {
         items={cinemas.map((itemRap) => {
           return {
             label: (
-              <div className="border-2">
+              <div
+                style={{
+                  width: "55px",
+                }}
+                className="border-2"
+              >
                 <img className="w-16" src={itemRap.logo} alt="123" />
               </div>
             ),
@@ -44,9 +54,12 @@ const HomeMenu = (props) => {
                   .map((itemCumRap, index) => {
                     return {
                       label: (
-                        <div className="text-left w-80">
-                          <h4>{itemCumRap.tenCumRap.substr(0, 50) + "..."}</h4>
-                          <p>{itemCumRap.diaChi.substr(0, 50) + "..."}</p>
+                        <div
+                          style={{ width: "264px" }}
+                          className="abc text-left"
+                        >
+                          <h4> {summaryText(itemCumRap.tenCumRap, 0, 30)}</h4>
+                          <p>{summaryText(itemCumRap.diaChi, 0, 35)}</p>
                         </div>
                       ),
                       key: index,
@@ -55,8 +68,8 @@ const HomeMenu = (props) => {
                         .map((movie, index) => {
                           return (
                             <Fragment key={index}>
-                              <div>
-                                <div className="flex justify-start mb-5">
+                              <div className="grid grid-cols-12 mb-5">
+                                <div className="col-span-3">
                                   <img
                                     style={{
                                       height: "200px",
@@ -70,15 +83,17 @@ const HomeMenu = (props) => {
                                         "https://picsum.photos/75/75";
                                     }}
                                   />
-                                  <div className="ml-4">
-                                    <h1 className="text-2xl text-green-700">
-                                      {movie.tenPhim}
-                                    </h1>
-                                    <div className="grid grid-cols-1 gap-2">
-                                      {movie.lstLichChieuTheoPhim
-                                        ?.slice(0, 3)
-                                        .map((showTime, index) => {
-                                          return (
+                                </div>
+                                <div className="col-start-4 col-span-9 ml-5">
+                                  <h1 className="text-2xl text-green-700">
+                                    {movie.tenPhim}
+                                  </h1>
+                                  <div className="grid grid-cols-12">
+                                    {movie.lstLichChieuTheoPhim
+                                      ?.slice(0, 6)
+                                      .map((showTime, index) => {
+                                        return (
+                                          <div className="col-span-6 mb-1">
                                             <NavLink
                                               to={`/checkout/${showTime.maLichChieu}`}
                                               key={index}
@@ -97,9 +112,9 @@ const HomeMenu = (props) => {
                                                 ).format("DD/MM/YYYY")}
                                               </Button>
                                             </NavLink>
-                                          );
-                                        })}
-                                    </div>
+                                          </div>
+                                        );
+                                      })}
                                   </div>
                                 </div>
                               </div>

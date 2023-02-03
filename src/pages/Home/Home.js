@@ -32,8 +32,8 @@ export default function Home() {
                 className="mb-7"
                 key={item.maPhim}
                 xs={24}
-                sm={12}
-                md={8}
+                sm={24}
+                md={12}
                 lg={6}
               >
                 <Card
@@ -51,9 +51,9 @@ export default function Home() {
                   }
                 >
                   <h1 className=" text-2xl text-center my-2 font-semibold h-20">
-                    {summaryText(item.tenPhim, 0, 40)}
+                    {summaryText(item.tenPhim, 0, 20)}
                   </h1>
-                  <p className="text-xl my-2 h-36">
+                  <p className="text-lg my-2 h-36">
                     {summaryText(item.moTa, 0, 100)}
                   </p>
                   <Link to={`/detail/${item.maPhim}`}>
