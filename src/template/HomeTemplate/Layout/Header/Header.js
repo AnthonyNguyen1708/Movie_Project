@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { ENV } from "../../../../util/settings/config";
+import PopupHeader from "./PopupHeader";
 
 export default function Header() {
   const { profile } = useSelector((state) => state.user);
@@ -91,7 +92,11 @@ export default function Header() {
               {renderLogin()}
             </div>
             <div className="lg:hidden mr-5 h-full flex flex-wrap items-center">
-              <Popover placement="bottomRight" content={"abc"} trigger="click">
+              <Popover
+                placement="bottomRight"
+                content={<PopupHeader />}
+                trigger="click"
+              >
                 <Button shape="round">
                   <SettingOutlined />
                 </Button>

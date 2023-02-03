@@ -90,10 +90,17 @@ const AdminTemplate = (props) => {
                 <div className="logo p-5">
                   <NavLink to="/">
                     <img
+                      className="hidden lg:block"
                       width={150}
                       src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
                       alt="..."
                     />
+                    <img
+                      className="lg:hidden"
+                      width={50}
+                      alt="123"
+                      src="https://i.imgur.com/lC22izJ.png"
+                    ></img>
                   </NavLink>
                 </div>
                 <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">

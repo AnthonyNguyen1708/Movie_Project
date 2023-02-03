@@ -35,7 +35,7 @@ const Detail = (props) => {
   return (
     <div
       style={{
-        height: "80vh",
+        height: "75vh",
         backgroundColor: "rgb(10, 32, 41)",
       }}
       className=" h-full pt-5 "
