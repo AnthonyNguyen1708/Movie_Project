@@ -20,8 +20,8 @@ const Profile = () => {
       }}
       className="container mx-auto"
     >
-      <div className="flex justify-evenly sm:block">
-        <div className="w-1/3 flex justify-center sm:w-full">
+      <div className="lg:flex justify-evenly sm:block">
+        <div className=" flex justify-center sm:w-full">
           <div className="text-center mt-10">
             <img
               width={300}
@@ -35,7 +35,7 @@ const Profile = () => {
             <p>Email: {profile.email}</p>
           </div>
         </div>
-        <div className="text-center w-1/2 sm:w-full">
+        <div className="text-center  sm:w-full">
           <h2>Lịch sử đặt vé</h2>
           {bookingHistory?.thongTinDatVe ? (
             <Table
