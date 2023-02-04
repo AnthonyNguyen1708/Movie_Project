@@ -72,8 +72,8 @@ const SeatSelection = (props) => {
 
   return (
     <div className="container mx-auto mt-5">
-      <div className="grid grid-cols-12">
-        <div className="col-span-7 mt-20">
+      <div className="checkout_content grid grid-cols-12">
+        <div className="checkout_left col-span-7 mt-20">
           <div className="mt-20">
             <div className="mx-auto">
               <img
@@ -82,7 +82,7 @@ const SeatSelection = (props) => {
                 alt=""
               />
             </div>
-            <div className="flex justify-center">
+            <div className="chair_list flex justify-center">
               <div>{renderSeats()}</div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const SeatSelection = (props) => {
             </div>
           </div>
         </div>
-        <div className="col-start-9 col-span-4">
+        <div className="checkout_right col-start-9 col-span-4">
           <div className="p-3 rounded-lg shadow-2xl">
             <div>
               <h3 className=" text-center text-2xl">{thongTinPhim.tenPhim}</h3>

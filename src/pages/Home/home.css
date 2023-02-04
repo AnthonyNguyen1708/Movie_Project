@@ -1,0 +1,8 @@
+@media screen and (max-width: 670px) {
+  .movie_item {
+    padding: 80px;
+    width: 80% !important;
+    height: 90% !important;
+    margin-left: 10%;
+  }
+}

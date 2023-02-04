@@ -9,6 +9,7 @@ import { Col, Row, Card, Button, Pagination } from "antd";
 import { Link } from "react-router-dom";
 import HomeCarousel from "../../template/HomeTemplate/Layout/HomeCarousel/HomeCarousel";
 import { summaryText } from "../../util/settings/generalSetting";
+import "./home.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export default function Home() {
                 lg={6}
               >
                 <Card
+                  className="movie_item"
                   hoverable
                   style={{
                     width: "100%",
@@ -44,7 +46,7 @@ export default function Home() {
                   }}
                   cover={
                     <img
-                      className="h-72 object-cover object-left-top"
+                      className="movie_img h-72 object-cover object-left-top"
                       alt="example"
                       src={item.hinhAnh}
                     />
