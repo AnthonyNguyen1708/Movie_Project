@@ -47,11 +47,10 @@ const Edit = (props) => {
       maNhom: ENV.REACT_APP_GROUP_CODE,
       maPhim: id,
     };
-    console.log(value);
+
     const formData = new FormData();
     for (var key in value) {
       formData.append(key, value[key]);
-      console.log(`${key}`, formData.get(key));
     }
     dispatch(postUpdateMovieAction(formData));
   };

@@ -39,7 +39,6 @@ const AddNewFilm = () => {
     const formData = new FormData();
     for (let key in value) {
       formData.append(key, value[key]);
-      console.log(`${key}`, formData.get(key));
     }
     dispatch(postNewMovieAction(formData));
   };

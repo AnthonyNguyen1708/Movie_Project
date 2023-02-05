@@ -194,17 +194,6 @@ const Films = () => {
             <DeleteOutlined className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none" />
           </Popconfirm>
 
-          {/* <DeleteOutlined
-            onClick={() => {
-              if (window.confirm("Bạn có muốn xóa phim " + `${film.tenPhim}`)) {
-                dispatch(deleteMovieAction(film.maPhim));
-              } else {
-                console.log("no");
-              }
-            }}
-            className="px-1 ant-btn ant-btn-icon-only bg-transparent hover:bg-transparent focus:bg-transparent text-red-600 hover:text-red-500 focus:text-red-500 border-0 shadow-none"
-          ></DeleteOutlined> */}
-
           <NavLink to={`/admin/films/showTime/${film.maPhim}/${film.tenPhim}`}>
             <ScheduleOutlined className="px-1" />
           </NavLink>

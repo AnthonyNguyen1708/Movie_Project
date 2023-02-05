@@ -20,9 +20,7 @@ const ShowTime = (props) => {
     try {
       const res = await adminService.postShowTime(value);
       alert(`${res.data.content}`);
-      console.log("res: ", res);
     } catch (error) {
-      console.log("error: ", error);
       alert(`${error.response.data.content}`);
     }
   };
@@ -36,29 +34,23 @@ const ShowTime = (props) => {
   const handleChangeCinemaList = async (value) => {
     try {
       let res = await adminService.getCinemaListInfo(value);
-      console.log("res: ", res.data.content);
 
       setState({
         ...state,
         cinemaList: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 
   const getCinemaSystemAction = async () => {
     try {
       let res = await adminService.getCinemaSystemInfo();
-      console.log("res: ", res.data.content);
 
       setState({
         ...state,
         cinemaSystem: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

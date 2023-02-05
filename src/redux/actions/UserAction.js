@@ -12,9 +12,7 @@ export const postUserLogin = (user) => {
       });
 
       history.push("/");
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -25,7 +23,6 @@ export const postUserRegisterAction = async (user) => {
       history.push("/login");
     }
   } catch (error) {
-    console.log("error: ", error.response.data.content);
     alert(`${error.response.data.content}`);
   }
 };
@@ -37,7 +34,5 @@ export const bookingHistoryAction = async (dispatch) => {
       type: actionType.SET_BOOKING_HISTORY,
       payload: res.data.content,
     });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };

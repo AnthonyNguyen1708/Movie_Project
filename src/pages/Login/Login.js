@@ -19,12 +19,9 @@ const client = (
 const Login = (props) => {
   const dispatch = useDispatch();
   const handleLogin = (values) => {
-    console.log("Success:", values);
     dispatch(postUserLogin(values));
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+  const onFinishFailed = (errorInfo) => {};
 
   return (
     <div className="container mx-auto text-center">

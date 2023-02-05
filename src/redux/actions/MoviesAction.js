@@ -12,9 +12,7 @@ export const getBannersAction = async (dispatch) => {
       type: actionType.SET_BANNER,
       payload: res.data.content,
     });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };
 
 export const getMoviesAction = (page = 1) => {
@@ -26,9 +24,7 @@ export const getMoviesAction = (page = 1) => {
         type: actionType.SET_MOVIES_LIST,
         payload: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -40,9 +36,7 @@ export const getCinemaSystemAction = async (dispatch) => {
       type: actionType.SET_CINEMAS_SYSTEM,
       payload: res.data.content,
     });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };
 
 export const getScheduleMovieCinemaAction = async (maHeThongRap) => {
@@ -50,9 +44,7 @@ export const getScheduleMovieCinemaAction = async (maHeThongRap) => {
     const res = await movieService.getScheduleMovieCinema(maHeThongRap);
 
     return res;
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };
 
 export const getMovieDetailAction = (movieId) => {
@@ -63,9 +55,7 @@ export const getMovieDetailAction = (movieId) => {
         type: actionType.SET_MOVIE_DETAIL,
         payload: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -77,9 +67,7 @@ export const getTheaterDetailAction = (showTimeId) => {
         type: actionType.SET_THEATER_DETAIL,
         payload: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -94,7 +82,6 @@ export const bookingTicketAction = (bookingInfo = new BookingInfo()) => {
       await dispatch(hideLoadingAction);
       dispatch({ type: actionType.TAB_CHANGE_AUTO });
     } catch (error) {
-      console.log("error: ", error);
       dispatch(hideLoadingAction);
     }
   };

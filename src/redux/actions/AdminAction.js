@@ -9,9 +9,7 @@ export const getFullMovieListAction = async (dispatch) => {
       type: actionsType.SET_FULL_MOVIE_LIST,
       payload: res.data.content,
     });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };
 
 export const getMovieInfoAction = (movieId) => {
@@ -22,9 +20,7 @@ export const getMovieInfoAction = (movieId) => {
         type: actionsType.SET_MOVIE_INFO,
         payload: res.data.content,
       });
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -33,9 +29,7 @@ export const postNewMovieAction = (data) => {
     try {
       const res = await adminService.postNewMovie(data);
       alert("Thêm phim thành công!");
-      console.log("res: ", res.data.content);
     } catch (error) {
-      console.log("error: ", error.response?.data);
       alert(`${error.response?.data.content}`);
     }
     dispatch(getFullMovieListAction);
@@ -46,11 +40,9 @@ export const postUpdateMovieAction = (data) => {
   return async (dispatch) => {
     try {
       const res = await adminService.postUpdateMovie(data);
-      console.log("res: ", res.data.content);
       alert("Cập nhật phim thành công!");
       history.goBack();
     } catch (error) {
-      console.log("error: ", error);
       alert(`${error.response?.data.content}`);
     }
     dispatch(getFullMovieListAction);
@@ -61,10 +53,8 @@ export const deleteMovieAction = (movieId) => {
   return async (dispatch) => {
     try {
       const res = await adminService.deleteMovie(movieId);
-      console.log("res: ", res.data.content);
       alert("Xóa phim thành công!");
     } catch (error) {
-      console.log("error: ", error.response?.data);
       alert(`${error.response?.data.content}`);
     }
     dispatch(getFullMovieListAction);
@@ -78,9 +68,7 @@ export const getUserListAction = async (dispatch) => {
       type: actionsType.SET_USER_LIST,
       payload: res.data.content,
     });
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  } catch (error) {}
 };
 
 export const deleteUserAction = (taiKhoan) => {
@@ -104,11 +92,8 @@ export const updateUserAction = (user) => {
   return async (dispatch) => {
     try {
       const res = await adminService.postUpdateUser(user);
-      console.log("res: ", res);
       alert("Cập nhật người dùng thành công!");
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    } catch (error) {}
     dispatch(getUserListAction);
   };
 };
@@ -117,7 +102,6 @@ export const addNewUserAction = (user) => {
   return async (dispatch) => {
     try {
       const res = await adminService.postNewUser(user);
-      console.log("res: ", res);
       alert("Thêm người dùng thành công!");
     } catch (error) {
       alert(`${error.response.data.content}`);

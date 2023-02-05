@@ -21,7 +21,6 @@ const EditUser = (props) => {
   }, [user]);
   const handleSubmit = (fieldValues) => {
     const dataEdit = { ...fieldValues, maNhom: ENV.REACT_APP_GROUP_CODE };
-    console.log("dataEdit: ", dataEdit);
 
     dispatch(updateUserAction(dataEdit));
   };

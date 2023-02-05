@@ -9,7 +9,6 @@ const Register = (props) => {
   const dispatch = useDispatch();
 
   const handleSubmit = (value) => {
-    console.log("value: ", value);
     postUserRegisterAction(value);
   };
 

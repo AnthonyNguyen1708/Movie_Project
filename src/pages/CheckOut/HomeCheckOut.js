@@ -3,9 +3,7 @@ import { Tabs } from "antd";
 import CheckOut from "./CheckOut";
 
 const HomeCheckOut = () => {
-  const onChange = (key) => {
-    console.log(key);
-  };
+  const onChange = (key) => {};
   const items = [
     {
       key: "1",
