@@ -1,0 +1,15 @@
+@media screen and (max-width: 1023px) {
+  .detail_content {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .detail_content {
+    display: none;
+  }
+
+  .detail_small {
+    display: block;
+  }
+}

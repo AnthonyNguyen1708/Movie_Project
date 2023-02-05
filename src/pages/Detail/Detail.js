@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "../../assets/styles/circle.css";
 import { getMovieDetailAction } from "../../redux/actions/MoviesAction";
+import "./detailPage.css";
 
 const Detail = (props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -35,13 +36,12 @@ const Detail = (props) => {
   return (
     <div
       style={{
-        height: "75vh",
         backgroundColor: "rgb(10, 32, 41)",
       }}
-      className=" h-full pt-5 "
+      className=" h-full pt-5 pb-20"
     >
-      <div className="container mx-auto grid grid-cols-12">
-        <div className="col-span-4 col-start-4">
+      <div className="detail_content container mx-auto grid grid-cols-12">
+        <div className="detail_left col-span-4 col-start-4">
           <div className="grid grid-cols-2">
             <Image
               style={{
@@ -70,7 +70,7 @@ const Detail = (props) => {
           </div>
         </div>
 
-        <div className="col-span-4 my-auto mx-auto text-center">
+        <div className="detail_right col-span-4 my-auto mx-auto text-center">
           <h1 className="text-white">Rating</h1>
           <div className="pl-8">
             <div className={`c100 p${movieDetail.danhGia * 10} big`}>
@@ -90,16 +90,71 @@ const Detail = (props) => {
         </div>
       </div>
 
-      <div className="mt-20 container mx-auto ">
+      <div className="detail_small hidden">
+        <div className="flex justify-center">
+          <img
+            style={{
+              width: "60%",
+            }}
+            src={movieDetail.hinhAnh}
+            alt=""
+          />
+        </div>
+        <div className="text-white text-center mx-10 px-20">
+          <p className="text-sm">
+            Ngày khởi chiếu:{" "}
+            {moment(movieDetail.ngayKhoiChieu).format("DD.MM.YYYY")}
+          </p>
+          <p>{movieDetail.tenPhim}</p>
+          <p>Mô tả: {movieDetail.moTa}</p>
+          <Button
+            className="mr-3"
+            type="primary"
+            size="large"
+            onClick={() => showModal()}
+          >
+            Xem trailer
+          </Button>
+        </div>
+        <div className="my-auto mx-auto text-center">
+          <div
+            style={{
+              minHeight: "350px",
+              width: "50%",
+              marginLeft: "25%",
+            }}
+          >
+            <h1 className="text-white">Rating</h1>
+            <div className="pl-12">
+              <div className={`c100 p${movieDetail.danhGia * 10} big`}>
+                <span>{movieDetail.danhGia + "/10"}</span>
+                <div className="slice">
+                  <div className="bar"></div>
+                  <div className="fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Rate
+            allowHalf
+            className=""
+            value={movieDetail.danhGia / 2}
+            count={5}
+          />
+        </div>
+      </div>
+
+      <div className="mt-20 mb-10 container mx-auto ">
         <Tabs
           style={{
+            minHeight: "400px",
             width: "50%",
             height: "300px",
             backgroundColor: "rgb(255, 255, 255)",
             borderRadius: "10px",
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           }}
-          className="text-white mx-auto "
+          className="text-white mx-auto"
           tabPosition={"left"}
           items={movieDetail.heThongRapChieu?.map((item, index) => {
             return {
@@ -149,7 +204,6 @@ const Detail = (props) => {
           height="500px"
           src={movieDetail.trailer}
         ></iframe>
-        {/* https://www.youtube.com/watch?v=KSFS0OfIK2c */}
       </Modal>
     </div>
   );
