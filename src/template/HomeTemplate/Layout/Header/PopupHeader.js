@@ -1,5 +1,6 @@
 import { Button } from "antd";
-import React from "react";
+import React, { Fragment } from "react";
+import _ from "lodash";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
@@ -9,7 +10,7 @@ const PopupHeader = () => {
   const { profile } = useSelector((state) => state.user);
   return (
     <div>
-      {profile ? (
+      {!_.isEmpty(profile) ? (
         <div>
           <div>
             <span>Hello, </span>
@@ -43,20 +44,35 @@ const PopupHeader = () => {
               size="small"
               danger
               className=""
+              shape="circle"
+            >
+              <LogoutOutlined />
+            </Button>
+            <span
               onClick={() => {
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem(ENV.USER_PROFILE);
                 window.location.reload();
               }}
-              shape="circle"
+              className="ml-2 text-red-500 font-semibold"
             >
-              <LogoutOutlined />
-            </Button>
-            <span className="ml-2 text-red-500 font-semibold">Đăng xuất</span>
+              Đăng xuất
+            </span>
           </div>
         </div>
       ) : (
-        ""
+        <Fragment>
+          <NavLink to="/login">
+            <p className="text-sky-600 font-semibold no-underline hover:text-blue-400 mr-2">
+              Đăng nhập
+            </p>
+          </NavLink>
+          <NavLink to="/register">
+            <p className="text-sky-600 font-semibold no-underline hover:text-blue-400 mr-2 ">
+              Đăng kí
+            </p>
+          </NavLink>
+        </Fragment>
       )}
     </div>
   );
