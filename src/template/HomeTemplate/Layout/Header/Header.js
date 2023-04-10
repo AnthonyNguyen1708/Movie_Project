@@ -84,9 +84,6 @@ export default function Header() {
                 src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
               ></img>
             </NavLink>
-            {/* <div className="items-center flex flex-shrink-0 ">
-              {renderLogin()}
-            </div> */}
 
             <div className="items-center flex-shrink-0 hidden lg:flex">
               {renderLogin()}
